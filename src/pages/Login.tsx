@@ -6,16 +6,13 @@ import { login } from "../lib/pocketbase";
 import { useState } from "react";
 
 
-type AuthForm = {
-    email: string,
-    password: string,
-}
 
 const schema = zod.object({
     email: zod.string().email('Invalid email address').min(1, 'Email is required'),
     password: zod.string().min(8, 'Password must be atleast 8 characters long').nonempty('Password is required'),
 });
 
+type AuthForm = zod.infer<typeof schema>;
 
 const resolver = zodResolver(schema);
 
