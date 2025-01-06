@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { getRecordById, updateRecord } from "../lib/pocketbase";
 
 export default function EditData() {
-    const {dataId} = useParams();
+    const {dataId,id} = useParams();
   const [nameNew, setName] = useState("");
   const [jobNew, setJob] = useState("");
   const navigate = useNavigate();
@@ -72,7 +72,7 @@ export default function EditData() {
           </div>
           <div className="flex justify-center p-4 gap-4">
               <button onClick={handleSubmit} className="btn btn-neutral">Edit</button>
-              <Link to='..' className="btn ">Cancel</Link>
+              <Link to={`/dashboard/${id}`} className="btn ">Cancel</Link>
           </div>
         </div>
       </div>

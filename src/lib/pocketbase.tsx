@@ -15,7 +15,7 @@ pb.autoCancellation(false);
 
 export async function login(email: string, password: string){
      await pb.collection("users").authWithPassword(email, password);
-    const recordId = pb.authStore.record?.id;
+    const recordId = pb.authStore.record?.id;    
     return recordId;
 }
 
@@ -31,6 +31,7 @@ export async function signup(data: AuthForm){
     await pb.collection("users").authWithPassword(data.email, data.password);
     const recordId = pb.authStore.record?.id;
     return recordId;
+
 
 
 }
