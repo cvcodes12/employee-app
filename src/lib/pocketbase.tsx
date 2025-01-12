@@ -40,8 +40,12 @@ export async function getList(){
 
 }
 export async function createRecord(name:string,job:string) {
-    const data = {name:name,job:job}
-    await pb.collection("collection").create(data);
+    if (pb.authStore.record) {
+        const data = {name: name, job: job, user: pb.authStore.record.id};
+        await pb.collection("collection").create(data);
+    } else {
+        throw new Error("User is not authenticated");
+    }
 }
 
 export async function deleteRecord(id:string) {
@@ -51,7 +55,7 @@ export async function deleteRecord(id:string) {
 }
 
 export async function updateRecord(id:string,name:string,job:string) {
-    const data = {name:name,job:job}
+    const data = {name:name,job:job,user:pb.authStore.record?.id}
     await pb.collection("collection").update(id,data);
 
 }

@@ -23,16 +23,15 @@ export default function EditData() {
     fetchData();
   }, [dataId]);
 
-  const handleSubmit = () => {
-    if(!nameNew || !jobNew){
-          window.alert("Please fill all the fields");
-          return;
-        }
-        if(dataId)
-        updateRecord(dataId,nameNew,jobNew);
-        navigate('..')
-
-
+  const handleSubmit = async () => {
+    if (!nameNew || !jobNew) {
+      window.alert("Please fill all the fields");
+      return;
+    }
+    if (dataId) {
+      await updateRecord(dataId, nameNew, jobNew);
+      navigate(`/dashboard/${id}`);
+    }
   }
   
   
